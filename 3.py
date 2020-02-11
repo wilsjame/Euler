@@ -1,50 +1,26 @@
 # The prime factors of 13195 are 5, 7, 13 and 29
 # What is the largest prime factor of the number 600851475143? 
+# thx to xisk on math.stackexhange
 
 def main():
-	#n = 600851475143
-	n = 13195
-	pl = []
+	a = 600851475143
+	#a = 13195
 
-	pl = primes(n)
+	# current divisor store
+	b = 2
 
-	# prime factors
-	for p in pl:
-		if n % p == 0:
-			print(p)
+	# largest divisor store
+	c = None
 
-	return
-
-# returns a list of prime numbers in the range [2,n]
-def primes(n):
-	l = list(range(0, n+1))
-	primes = []
-	p = 1
-	stop = False
-
-	# find first number greater than p and mark as prime
-	while stop == False:
-		stop = True
-		for x in range(len(l)):
-			if l[x] > p:
-				p = l[x]
-				stop = False
+	while True:
+		if a % b == 0:
+			a = a / b
+			c = b
+			if a == 1:
 				break;
+		else:
+			b += 1
 
-		# mark composites
-		i = 2
-		while i * p <= n:
-			l[i * p] = 0
-			i += 1
+	print(c)
 		
-	# clean out l
-	del l[1]
-
-	# primes
-	for p in l:
-		if p != 0:
-			primes.append(p)
-
-	return primes
-
 main()
