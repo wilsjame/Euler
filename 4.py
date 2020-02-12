@@ -6,6 +6,17 @@
 import math
 
 def main():
+	# [100, 999]
+	a = range(100, 1000) 
+	b = range(100, 1000)
+	largestPalindrome = 0
+
+	for i in a:
+		for j in b:
+			if palindrome(i * j) and i * j > largestPalindrome: 
+				largestPalindrome = i * j
+
+	print(largestPalindrome)
 	
 	return 0
 	
