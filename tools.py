@@ -36,3 +36,36 @@ def nthPrime(n):
 		if isPrime(candidate):
 			count += 1
 	return candidate
+
+# returns a bool list from [2, N] where False indices are prime
+def eratosthenes(N):
+	limit = N
+	crosslimit = math.floor(math.sqrt(limit))
+	sieve = [False for i in range(0, limit)]
+	sieve[0] = None
+	sieve[1] = None
+	# mark even numbers > 2 true
+	n = 4
+	while n < limit:
+		sieve[n] = True
+		n += 2
+	n = 3
+	while n <= crosslimit:
+		if sieve[n] == False: # not marked, hence prime
+			m = n * n
+			while m < limit:
+				sieve[m] = True
+				m += 2 * n 
+		n += 2
+	return sieve
+
+# sum of primes below N
+# ex) N = 10 : 2+3+5+7 = 17
+def sumPrimes(N):
+	sum = 0
+	limit = N
+	sieve = (eratosthenes(limit))
+	for n in range(2, limit):
+		if sieve[n] == False:
+			sum = sum + n
+	return sum
