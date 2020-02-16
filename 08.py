@@ -8,7 +8,7 @@
 
 def main():
 	# get the 1000-digit number
-	with open('8.txt', 'r') as f:
+	with open('08.txt', 'r') as f:
 		read_data = f.read()
 
 	l = []
