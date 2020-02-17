@@ -73,3 +73,24 @@ def sumPrimes(N):
 		if sieve[n] == False:
 			sum = sum + n
 	return sum
+
+# returns a list of prime factors of a number
+def primeFactorization(n):
+	i = 1 # prime iterator
+	primeFactors = []
+	if isPrime(n): # input is prime off the bat
+		primeFactors.append(n)
+	else:
+		while n > 1 and isPrime(n) == False:
+			while n % nthPrime(i) == 0: 
+				primeFactors.append(nthPrime(i))
+				n = int(n / nthPrime(i))
+			i += 1
+		
+		# n / nthPrime(i) > 1 when the last two prime factors are not the same 
+		# ex) 10 --> [2,5]
+		# which means n is a prime factor that still needs to be added the list
+		if n > 1:
+			primeFactors.append(n)
+
+	return primeFactors
