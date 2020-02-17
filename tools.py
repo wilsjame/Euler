@@ -29,6 +29,10 @@ def isPrime(n):
 		return True
 
 def nthPrime(n):
+	# only even prime is 2
+	if n == 1:
+		return 2
+		
 	candidate = 1
 	count = 1 # know 2 is prime
 	while count < n:
