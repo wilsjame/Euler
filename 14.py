@@ -16,7 +16,6 @@ def main():
 	chain = 0
 	num = None
 	for i in range(1,1000000):
-		print(i)
 		if hailstorm(i) > chain:
 			chain = hailstorm(i)
 			num = i
@@ -25,16 +24,20 @@ def main():
 
 	return 0
 	
+# returns chain length from n --> 1
+# Collatz problem
+# use memoization for efficiency
+table = {}
 def hailstorm(n):
-	chain = 1
-	while n > 1:
-		if n % 2 == 0:
-			n = n / 2
-		else: # odd
-			n = 3 * n + 1
-		chain += 1
-		#print(str(n) + " : " + str(chain))
+	if n == 1:
+		return 1
+	if n in table:
+		return table[n]
+	if n % 2 == 0:
+		table[int(n)] = 1 + hailstorm(n / 2)
+	else: # odd
+		table[int(n)] = 2 + hailstorm((3 * n + 1) / 2)
 
-	return chain
+	return table[n]
 
 main()
