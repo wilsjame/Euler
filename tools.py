@@ -74,23 +74,27 @@ def sumPrimes(N):
 			sum = sum + n
 	return sum
 
-# returns a list of prime factors of a number
+# returns a dictionary of prime factors and their count 
+# key = prime factor: value = count
+# ex) 10 --> (2: 1, 5: 1)
 def primeFactorization(n):
 	i = 1 # prime iterator
-	primeFactors = []
+	primeFactors = {}
 	if isPrime(n): # input is prime off the bat
-		primeFactors.append(n)
+		primeFactors[n] = 1
 	else:
 		while n > 1 and isPrime(n) == False:
 			while n % nthPrime(i) == 0: 
-				primeFactors.append(nthPrime(i))
+				if nthPrime(i) not in primeFactors:
+					primeFactors[nthPrime(i)] = 1
+				else:
+					primeFactors[nthPrime(i)] = primeFactors[nthPrime(i)] + 1
 				n = int(n / nthPrime(i))
 			i += 1
-		
 		# n / nthPrime(i) > 1 when the last two prime factors are not the same 
 		# ex) 10 --> [2,5]
 		# which means n is a prime factor that still needs to be added the list
 		if n > 1:
-			primeFactors.append(n)
+			primeFactors[n] = 1
 
 	return primeFactors
