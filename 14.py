@@ -27,17 +27,17 @@ def main():
 # returns chain length from n --> 1
 # Collatz problem
 # use memoization for efficiency
-table = {}
+memo = {}
 def hailstorm(n):
 	if n == 1:
 		return 1
-	if n in table:
-		return table[n]
+	if n in memo:
+		return memo[n]
 	if n % 2 == 0:
-		table[int(n)] = 1 + hailstorm(n / 2)
+		memo[int(n)] = 1 + hailstorm(n / 2)
 	else: # odd
-		table[int(n)] = 2 + hailstorm((3 * n + 1) / 2)
+		memo[int(n)] = 2 + hailstorm((3 * n + 1) / 2)
 
-	return table[n]
+	return memo[n]
 
 main()
