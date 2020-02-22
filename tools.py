@@ -98,3 +98,23 @@ def primeFactorization(n):
 			primeFactors[n] = 1
 
 	return primeFactors
+
+# finds the sum of the maxmium total path taken from top 
+# to bottom in a triangle. Uses the bottom up approach.
+#arr = [
+#[3],
+#[7, 4],
+#[2, 4, 6],
+#[8, 5, 9, 3,]]
+# result --> 23
+def maxPathSumTriangle(arr):
+	m = len(arr) - 2 # second to last row
+	while m >= 0:
+		for i in range(len(arr[m])):
+			if arr[m+1][i] > arr[m+1][i+1]:
+				arr[m][i] += arr[m+1][i]
+			else:
+				arr[m][i] += arr[m+1][i+1]
+		m -= 1
+
+	return arr[0]
