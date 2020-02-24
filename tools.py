@@ -118,3 +118,37 @@ def maxPathSumTriangle(arr):
 		m -= 1
 
 	return arr[0]
+
+# Greatest common divisor (GCD) or 
+# highest common factor (HCF) is the 
+# largest positive integer that divides 
+# all the given numbers without giving a remainder.
+#t1 = [2,4,6,8,10] # GCD = 2
+#t2 = [2,3,4,5,6] # GCD = 1
+#t3 = [36,72] # GCD = 36
+def gcd(nums):
+	#TODO sort the numbers from low to high
+	prime_factors = []
+	gcd = 1
+	# find the prime factors for each number
+	for n in nums:
+		prime_factors.append(primeFactorization(n))
+	# compare the prime factors of the first (smallest) number with the other numbers,
+	# and determine if it is a shared divisor
+	for k in prime_factors[0]:
+		shared_div = True
+		count = 0
+		while count < prime_factors[0][k]:
+			for d in range(len(prime_factors)):
+				if d == 0: # these are the prime factors of the smallest number we're comparing to
+					None
+				else:
+					if k not in prime_factors[d]:
+						shared_div = False
+			# keep a running product of all the shared divisors,
+			# this will be the GCD
+			if shared_div == True:
+				gcd *= k
+			count += 1
+
+	return gcd
