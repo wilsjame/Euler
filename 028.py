@@ -8,13 +8,13 @@ Ulam's spiral implementaion sum diagonals
 1001*1001 = 1002001 is the final digit
 must end in corner, any corner is ok
 work backwards 
-number of cocentric squares including '1' is 1001//2 + 1
+number of concentric squares including '1' is 1001//2 + 1
 """
 n = 1001
 k = n*n
 ans = 0
 for sq in range(n//2 + 1):
-    # dimension of cocentric square ex) 5, 3, 1
+    # dimension of concentric square ex) 5, 3, 1
     dim = n - sq * 2
     if dim > 1:
         # length between corners in square
